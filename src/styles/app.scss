@@ -10,3 +10,7 @@
         display: none !important;
     }
 }
+
+body div.flatpickr-calendar.hasTime.animate {
+	display: none;
+}

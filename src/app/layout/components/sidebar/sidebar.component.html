@@ -56,6 +56,10 @@
                 </ul>
             </li>
         </div>
+        <a [routerLink]="['/extra']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-upload fa-fw"></i>&nbsp;
+            <span>Extra</span>
+        </a>
         <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-file-o"></i>&nbsp;
             <span>{{ 'Blank Page' | translate }}</span>
