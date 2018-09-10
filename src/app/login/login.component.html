@@ -1,22 +1,41 @@
 <div class="login-page" [@routerTransition]>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>SB Admin BS4 Angular5</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
-                    </div>
-                </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
-            </form>
-        </div>
-    </div>
+	<div class="row justify-content-md-center">
+		<div class="col-md-4">
+			<img src="assets/images/logo.png" width="150px" class="user-avatar" />
+			<h1>Ahana Login</h1>
+			<form role="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+				<div class="form-content">
+					<div class="form-group">
+						<input type="email" [placeholder]="'Email'" class="form-control input-underline input-lg" name="email" [(ngModel)]="model.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email />
+						<div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+							<div *ngIf="email.errors.required">Email is required</div>
+							<div *ngIf="email.errors.email">Email must be a valid email address</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="password" [placeholder]="'Password'" class="form-control input-underline input-lg" name="password" [(ngModel)]="model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
+						<div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+							<div *ngIf="password.errors.required">Password is required</div>
+							<div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<select class="form-control select" name="tenant_id" [(ngModel)]="model.tenant_id" class="form-control" #tenant_id="ngModel" [ngClass]="{ 'is-invalid': f.submitted && tenant_id.invalid }" required>
+							<option value="" disabled selected>Select your option</option>
+							<option value="1">Doctor</option>
+							<option value="2">Nurse</option>
+							<option value="3">Compounder</option>
+							<option value="4">Patient</option>
+							<option value="5">Receptionist</option>
+						</select>
+						<div *ngIf="f.submitted && tenant_id.invalid" class="invalid-feedback">
+							<div *ngIf="tenant_id.errors.required">Your role is required</div>
+						</div>
+					</div>
+				</div>
+				<button class="btn rounded-btn" type="submit"> Log in </button>
+				<button class="btn rounded-btn" [routerLink]="['/signup']">Register</button>
+			</form>
+		</div>
+	</div>
 </div>
