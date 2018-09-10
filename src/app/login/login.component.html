@@ -27,12 +27,12 @@
 					</div>
 					<div class="form-group">
 						<select class="form-control select" name="tenant_id" [(ngModel)]="model.tenant_id" class="form-control" #tenant_id="ngModel" [ngClass]="{ 'is-invalid': f.submitted && tenant_id.invalid }" required>
-							<option value="" disabled selected>Select your option</option>
-							<option value="1">Doctor</option>
-							<option value="2">Nurse</option>
+							<option value="" disabled selected>Select your role</option>
+							<option *ngFor="let tenant of allTenantLists" [value]="tenant.id">{{tenant.role}}</option>
+							<!-- <option value="2">Nurse</option>
 							<option value="3">Compounder</option>
 							<option value="4">Patient</option>
-							<option value="5">Receptionist</option>
+							<option value="5">Receptionist</option> -->
 						</select>
 						<div *ngIf="f.submitted && tenant_id.invalid" class="invalid-feedback">
 							<div *ngIf="tenant_id.errors.required">Your role is required</div>
