@@ -19,19 +19,19 @@ export class LoginComponent implements OnInit {
 	model: any = {};
 
 	onSubmit() {
-		localStorage.setItem('isLoggedin', 'true');
+		// localStorage.setItem('isLoggedin', 'true');
 		console.log(this.model)
-		this.router.navigate(['dashboard']);
-		// var self = this;
-		// this.http.post('http://localhost:3000/employee-login', this.loginForm.value).toPromise().then(res => { // Success
-		// 	console.log(res);
-		// 	if(res) {
-		// 		localStorage.setItem('curUserId', res[0].id);
-		// 		self.router.navigate(['welcome']);
-		// 	}
-		// }, err => { // Error
-		// 	console.log(err);
-		// });
+		// this.router.navigate(['dashboard']);
+		var self = this;
+		this.http.post('http://hmsapi.ark/IRISORG/web/v1/user/login', this.model).toPromise().then(res => { // Success
+			console.log(res);
+			// if(res) {
+			// 	localStorage.setItem('curUserId', res[0].id);
+			// 	self.router.navigate(['welcome']);
+			// }
+		}, err => { // Error
+			console.log(err);
+		});
 	}
 
 }
