@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -14,6 +14,11 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit() {
 		this.model.tenant_id = '';
+		this.http.get('http://hmsapi.ark/IRISORG/web/v1/default/get-tenant-list').toPromise().then(res => { // Success
+			console.log(res);
+		}, err => { // Error
+			console.log(err);
+		});
 	}
 
 	model: any = {};
@@ -22,6 +27,11 @@ export class LoginComponent implements OnInit {
 		// localStorage.setItem('isLoggedin', 'true');
 		console.log(this.model)
 		// this.router.navigate(['dashboard']);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Access-Control-Allow-Origin':  '*'
+			})
+		};
 		var self = this;
 		this.http.post('http://hmsapi.ark/IRISORG/web/v1/user/login', this.model).toPromise().then(res => { // Success
 			console.log(res);
