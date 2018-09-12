@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { ExtraComponent } from './extra/extra.component';
+import { RolesComponent } from './roles/roles.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { CreateRoleComponent } from './create-role/create-role.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
-        children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'extra', component: ExtraComponent },
-            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-            { path: 'forms', loadChildren: './form/form.module#FormModule' },
-            { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
-            { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
-            { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
-        ]
+        children: [{
+            path: '',
+            redirectTo: 'configuration'
+        }, {
+            path: 'configuration',
+            component: ConfigurationComponent,
+        }, {
+            path: 'configuration/roles',
+            component: RolesComponent
+        }, {
+            path: 'configuration/create-role',
+            component: CreateRoleComponent
+        }]
     }
 ];
 

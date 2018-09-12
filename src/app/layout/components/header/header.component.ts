@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AhanaServiceService } from '../../../ahana-service.service';
+import { AhanaService } from '../../../ahana.service';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+	styleUrls: ['./header.component.scss'],
+	providers:  [ AhanaService ]
 })
 export class HeaderComponent implements OnInit {
 	pushRightClass: string = 'push-right';
+	loginUserName: string = '';
 
-	constructor(private translate: TranslateService, public router: Router, private ahanaService: AhanaServiceService) {
+	constructor(private translate: TranslateService, public router: Router, private ahanaService: AhanaService) {
 
 		this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
 		this.translate.setDefaultLang('en');
@@ -29,7 +31,9 @@ export class HeaderComponent implements OnInit {
 		});
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.loginUserName = localStorage.getItem('ngStorage-system_username');
+	}
 
 	isToggled(): boolean {
 		const dom: Element = document.querySelector('body');

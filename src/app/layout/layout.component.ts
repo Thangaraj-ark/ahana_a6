@@ -8,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
     
     collapedSideBar: boolean;
+    menuOptions = [];
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+    	var curMainMenu = window['location']['pathname'].split("/")[1]
+        var curPath = window['location']['pathname'].split("/")[2]
+        if (curMainMenu == 'configuration') {
+            this.menuOptions = [{
+                title: 'Administrative Module',
+                icon: 'fa fa-fw fa-dashboard',
+                children: [{
+                    title: 'Roles',
+                    route: '/configuration/roles'
+                }]
+            }, {
+                title: 'User Module',
+                icon: 'fa fa-fw fa-users',
+                route: '/configuration/users'
+            }];
+        }
+    }
 
     receiveCollapsed($event) {
         this.collapedSideBar = $event;

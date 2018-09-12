@@ -1,0 +1,21 @@
+<app-inner-header [pageHeading]="'Create Role'"></app-inner-header>
+<div class="component-main">
+	<form role="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+		<fieldset class="form-group">
+			<input class="form-control" type="text" placeholder="Name *" name="name" [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+			<div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+				<div *ngIf="name.errors.required">Name is required</div>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<div class="checkbox">
+				<label>
+					Status<input type="checkbox" class="" value="" name="status" [(ngModel)]="model.status" #status="ngModel" />
+					<span class="checkmark"></span>
+				</label>
+			</div>
+		</fieldset>
+		<button class="btn rounded-btn pull-right" type="button" routerLink="/configuration/roles">Cancel</button>
+		<button class="btn btn-success pull-right" type="submit">Save</button>
+	</form>
+</div>

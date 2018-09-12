@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
 import { routerTransition } from '../router.animations';
-import { AhanaServiceService } from '../ahana-service.service';
+import { AhanaService } from '../ahana.service';
 import * as moment from 'moment';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    animations: [routerTransition()],
-    providers:  [ AhanaServiceService ]
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss'],
+	animations: [routerTransition()],
+	providers:  [ AhanaService ]
 })
 export class LoginComponent implements OnInit {
-    constructor(public router: Router, private ahanaService: AhanaServiceService) {}
+	constructor(public router: Router, private ahanaService: AhanaService, private titleService: Title) {}
 
 	model: any = {};
 	allTenantLists = [];
@@ -50,7 +52,8 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('ngStorage-system_tenant_id', data.credentials.logged_tenant_id);
 				localStorage.setItem('ngStorage-system_username', this.model.username);
 				// localStorage.setItem('ngStorage-user : set all response', JSON.stringify(data));
-				this.router.navigate(['dashboard']);
+				this.titleService.setTitle('IRIS(' + data.credentials.org + ')');
+				this.router.navigate(['configuration']);
 			}
 		})
 		

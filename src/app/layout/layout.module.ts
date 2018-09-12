@@ -8,15 +8,19 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { DataTablesModule } from 'angular-datatables';
 
-import { PageHeaderModule } from '../shared';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TexteditorComponent } from './components/texteditor/texteditor.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { ExtraComponent } from './extra/extra.component';
+import { RolesComponent } from './roles/roles.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { InnerHeaderComponent } from './components/inner-header/inner-header.component';
+import { CreateRoleComponent } from './create-role/create-role.component';
 
 @NgModule({
     imports: [
@@ -31,9 +35,9 @@ import { ExtraComponent } from './extra/extra.component';
 			provide: DateAdapter,
 			useFactory: adapterFactory
 		}),
-		PageHeaderModule,
-		CKEditorModule
+		CKEditorModule,
+		DataTablesModule
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, TexteditorComponent, CalendarComponent, ExtraComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, TexteditorComponent, CalendarComponent, RolesComponent, DataTableComponent, ConfigurationComponent, InnerHeaderComponent, CreateRoleComponent]
 })
 export class LayoutModule {}
