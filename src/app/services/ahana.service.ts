@@ -42,27 +42,34 @@ export class AhanaService {
 		var reqTime = new Date();
 		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
 		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
-		return this.http.get(this.baseUrl + 'IRISORG/web/v1/role?access-token=' + accessToken + '&appVersion=1.5.28', this.httpOptions);
+		return this.http.get(this.baseUrl + 'IRISORG/web/v1/role?access-token=' + accessToken, this.httpOptions);
 	}
 
 	getSelectedRole (roleId, accessToken) {
 		var reqTime = new Date();
 		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
 		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
-		return this.http.get(this.baseUrl + 'IRISORG/web/v1/role/getrole?id=' + roleId +'&access-token=' + accessToken + '&appVersion=1.5.28', this.httpOptions);
+		return this.http.get(this.baseUrl + 'IRISORG/web/v1/role/getrole?id=' + roleId +'&access-token=' + accessToken, this.httpOptions);
 	}
 
 	createRoles (paramData, accessToken) {
 		var reqTime = new Date();
 		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
 		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
-		return this.http.post(this.baseUrl + 'IRISORG/web/v1/roles/createrole?access-token=' + accessToken + '&appVersion=1.5.28', paramData, this.httpOptions);
+		return this.http.post(this.baseUrl + 'IRISORG/web/v1/roles/createrole?access-token=' + accessToken, paramData, this.httpOptions);
 	}
 
 	updateRole (paramData, accessToken) {
 		var reqTime = new Date();
 		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
 		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
-		return this.http.post(this.baseUrl + 'IRISORG/web/v1/roles/updaterole?access-token=' + accessToken + '&appVersion=1.5.28', paramData, this.httpOptions);
+		return this.http.post(this.baseUrl + 'IRISORG/web/v1/roles/updaterole?access-token=' + accessToken, paramData, this.httpOptions);
+	}
+
+	getRoleRights (accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.get(this.baseUrl + 'IRISORG/web/v1/organization/getorg?access-token=' + accessToken, this.httpOptions);
 	}
 }

@@ -1,0 +1,30 @@
+<app-inner-header [pageHeading]="'Role Rigths'"></app-inner-header>
+<div class="component-main">
+	<div class="card-body table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Health Organization</th>
+					<th>ArkTestOrg</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">Role *</th>
+					<td>
+						<select class="form-control select" required>
+							<option value="" disabled selected>Select your role</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Access Rights</th>
+					<td>
+						<ngx-treeview [config]="config" [items]="items" (filterChange)="onFilterChange($event)" (selectedChange)="values = $event"></ngx-treeview>
+						<!-- <ngx-treeview [config]="config" [items]="items" (selectedChange)="onSelectedChange($event)"></ngx-treeview> -->
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

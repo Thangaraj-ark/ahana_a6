@@ -5,6 +5,8 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { RolesComponent } from './configuration/administrative-module/roles/roles.component';
 import { CreateRoleComponent } from './configuration/administrative-module/roles/create-role/create-role.component';
 import { UpdateRoleComponent } from './configuration/administrative-module/roles/update-role/update-role.component';
+import { RoleRightsComponent } from './configuration/administrative-module/role-rights/role-rights.component';
+import { SpecialitiesComponent } from './configuration/administrative-module/specialities/specialities.component';
 
 const routes: Routes = [
     {
@@ -25,6 +27,12 @@ const routes: Routes = [
         }, {
             path: 'configuration/update-role/:id',
             component: UpdateRoleComponent
+        }, {
+            path: 'configuration/role-rights',
+            component: RoleRightsComponent
+        }, {
+            path: 'configuration/specialities',
+            component: SpecialitiesComponent
         }]
     }
 ];

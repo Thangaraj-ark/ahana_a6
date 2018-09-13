@@ -22,6 +22,12 @@ export class LayoutComponent implements OnInit {
                 children: [{
                     title: 'Roles',
                     route: '/configuration/roles'
+                }, {
+                    title: 'Role Rights',
+                    route: '/configuration/role-rights'
+                }, {
+                    title: 'Specialities',
+                    route: '/configuration/specialities'
                 }]
             }, {
                 title: 'User Module',

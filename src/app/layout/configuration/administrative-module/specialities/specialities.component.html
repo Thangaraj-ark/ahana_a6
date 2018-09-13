@@ -1,0 +1,8 @@
+<app-inner-header [pageHeading]="'Specialities'"></app-inner-header>
+<div class="component-main">
+	<div class="head">
+		<h2 class="pull-left">Specialities Management</h2>
+		<button routerLink="/configuration/create-role" class="btn btn btn-primary pull-right">Add New Speciality</button>
+	</div>
+	<app-data-table *ngIf="showTable" [dtOptions]="dtOptions"></app-data-table>
+</div>

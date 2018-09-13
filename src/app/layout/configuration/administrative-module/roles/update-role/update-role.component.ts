@@ -15,7 +15,7 @@ export class UpdateRoleComponent implements OnInit {
 	alertType = '';
 	alertMessage = '';
 
-	constructor(public router: Router,private route: ActivatedRoute, private ahanaService: AhanaService) {}
+	constructor(public router: Router, private route: ActivatedRoute, private ahanaService: AhanaService) {}
 
 	ngOnInit() {
 		this.goInit();

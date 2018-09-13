@@ -27,7 +27,7 @@
 						</div>
 					</fieldset>
 					<fieldset class="form-group">
-						<select class="form-control select" name="tenant_id" [(ngModel)]="model.tenant_id" class="form-control" #tenant_id="ngModel" [ngClass]="{ 'is-invalid': f.submitted && tenant_id.invalid }" required>
+						<select class="form-control select" name="tenant_id" [(ngModel)]="model.tenant_id" #tenant_id="ngModel" [ngClass]="{ 'is-invalid': f.submitted && tenant_id.invalid }" required>
 							<option value="" disabled selected>Select your role</option>
 							<option *ngFor="let tenant of allTenantLists" [value]="tenant.id">{{tenant.role}}</option>
 							<!-- <option value="2">Nurse</option>

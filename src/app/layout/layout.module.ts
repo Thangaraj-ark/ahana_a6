@@ -9,6 +9,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { DataTablesModule } from 'angular-datatables';
+import { TreeviewModule } from 'ngx-treeview';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
@@ -24,6 +25,8 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { RolesComponent } from './configuration/administrative-module/roles/roles.component';
 import { CreateRoleComponent } from './configuration/administrative-module/roles/create-role/create-role.component';
 import { UpdateRoleComponent } from './configuration/administrative-module/roles/update-role/update-role.component';
+import { RoleRightsComponent } from './configuration/administrative-module/role-rights/role-rights.component';
+import { SpecialitiesComponent } from './configuration/administrative-module/specialities/specialities.component';
 
 @NgModule({
     imports: [
@@ -35,6 +38,7 @@ import { UpdateRoleComponent } from './configuration/administrative-module/roles
 		NgbModule.forRoot(),
         NgbAlertModule.forRoot(),
 		FlatpickrModule.forRoot(),
+		TreeviewModule.forRoot(),
 		CalendarModule.forRoot({
 			provide: DateAdapter,
 			useFactory: adapterFactory
@@ -42,6 +46,6 @@ import { UpdateRoleComponent } from './configuration/administrative-module/roles
 		CKEditorModule,
 		DataTablesModule
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, TexteditorComponent, CalendarComponent, RolesComponent, DataTableComponent, ConfigurationComponent, InnerHeaderComponent, CreateRoleComponent, UpdateRoleComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, TexteditorComponent, CalendarComponent, RolesComponent, DataTableComponent, ConfigurationComponent, InnerHeaderComponent, CreateRoleComponent, UpdateRoleComponent, RoleRightsComponent, SpecialitiesComponent]
 })
 export class LayoutModule {}
