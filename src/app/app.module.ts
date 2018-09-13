@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './services/auth.guard';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {

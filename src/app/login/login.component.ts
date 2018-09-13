@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { routerTransition } from '../router.animations';
-import { AhanaService } from '../ahana.service';
+import { AhanaService } from '../services/ahana.service';
 import * as moment from 'moment';
 
 @Component({

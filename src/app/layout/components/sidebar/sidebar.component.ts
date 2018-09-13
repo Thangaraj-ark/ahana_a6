@@ -1,6 +1,9 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
+
+import { AhanaService } from '../../../services/ahana.service';
 
 @Component({
 	selector: 'app-sidebar',
@@ -12,11 +15,12 @@ export class SidebarComponent implements OnInit {
 	collapsed: boolean = false;
 	showMenu: string = 'Administrative Module';
 	pushRightClass: string = 'push-right';
+	loginUserName = '';
 
 	@Input('menuOptions') menuOptions;
 	@Output() collapsedEvent = new EventEmitter<boolean>();
 	
-	constructor(private translate: TranslateService, public router: Router) {
+	constructor(private translate: TranslateService, public router: Router, private ahanaService: AhanaService, private titleService: Title) {
 		this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
 		this.translate.setDefaultLang('en');
 		const browserLang = this.translate.getBrowserLang();
@@ -33,7 +37,9 @@ export class SidebarComponent implements OnInit {
 		});
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.loginUserName = localStorage.getItem('ngStorage-system_username');
+	}
 
 	eventCalled() {
 		this.isActive = !this.isActive;
@@ -72,6 +78,18 @@ export class SidebarComponent implements OnInit {
 	}
 
 	onLoggedout() {
-		localStorage.removeItem('isLoggedin');
+		this.ahanaService.siteLogout().subscribe((data: any) => {
+			// console.log(data.success)
+			if (data.success) {
+				localStorage.removeItem('isLoggedin');
+				localStorage.removeItem('ngStorage-stay');
+				localStorage.removeItem('access_token');
+				localStorage.removeItem('ngStorage-system_tenant');
+				localStorage.removeItem('ngStorage-system_tenant_id');
+				localStorage.removeItem('ngStorage-system_username');
+				this.titleService.setTitle('IRIS');
+				this.router.navigate(['login']);
+			}
+		})
 	}
 }

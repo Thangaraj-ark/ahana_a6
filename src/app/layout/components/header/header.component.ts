@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AhanaService } from '../../../ahana.service';
+import { Title } from '@angular/platform-browser';
+
+import { AhanaService } from '../../../services/ahana.service';
 
 @Component({
 	selector: 'app-header',
@@ -13,7 +15,7 @@ export class HeaderComponent implements OnInit {
 	pushRightClass: string = 'push-right';
 	loginUserName: string = '';
 
-	constructor(private translate: TranslateService, public router: Router, private ahanaService: AhanaService) {
+	constructor(private translate: TranslateService, public router: Router, private ahanaService: AhanaService, private titleService: Title) {
 
 		this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
 		this.translate.setDefaultLang('en');
@@ -60,6 +62,7 @@ export class HeaderComponent implements OnInit {
 				localStorage.removeItem('ngStorage-system_tenant');
 				localStorage.removeItem('ngStorage-system_tenant_id');
 				localStorage.removeItem('ngStorage-system_username');
+				this.titleService.setTitle('IRIS');
 				this.router.navigate(['login']);
 			}
 		})

@@ -1,4 +1,8 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+	<div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+		<i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
+		<span>{{ 'Collapse Sidebar' | translate }}</span>
+	</div>
 	<div class="list-group">
 		<div *ngFor="let menu of menuOptions; let i = index">
 			<a *ngIf="!menu.children" [routerLink]="menu.route" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -22,9 +26,22 @@
 				</li>
 			</div>
 		</div>
-	</div>
-	<div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
-		<i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
-		<span>{{ 'Collapse Sidebar' | translate }}</span>
+		<div class="header-fields">
+            <a class="list-group-item" [routerLink]="['/configuration']">CONFIGURATION</a>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                    <span><i class="fa fa-user"></i>&nbsp; {{loginUserName}}</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <li>
+                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                                <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
 	</div>
 </nav>

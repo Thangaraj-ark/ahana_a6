@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { RolesComponent } from './roles/roles.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
-import { CreateRoleComponent } from './create-role/create-role.component';
+import { RolesComponent } from './configuration/administrative-module/roles/roles.component';
+import { CreateRoleComponent } from './configuration/administrative-module/roles/create-role/create-role.component';
+import { UpdateRoleComponent } from './configuration/administrative-module/roles/update-role/update-role.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,9 @@ const routes: Routes = [
         }, {
             path: 'configuration/create-role',
             component: CreateRoleComponent
+        }, {
+            path: 'configuration/update-role/:id',
+            component: UpdateRoleComponent
         }]
     }
 ];

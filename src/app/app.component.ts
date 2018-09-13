@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 	ngOnInit() {
 		if (localStorage.getItem('ngStorage-system_tenant')) {
 			this.titleService.setTitle('IRIS(' + localStorage.getItem('ngStorage-system_tenant') + ')');
+		} else {
+			this.titleService.setTitle('IRIS');
 		}
 	}
 }
