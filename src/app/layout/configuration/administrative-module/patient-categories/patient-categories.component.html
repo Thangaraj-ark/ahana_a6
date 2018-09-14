@@ -1,4 +1,4 @@
-<app-inner-header [pageHeading]="'Specialities'"></app-inner-header>
+<app-inner-header [pageHeading]="'Patient Categories'"></app-inner-header>
 <div [hidden]="!showAlert">
 	<ngb-alert [type]="alertType" (close)="showAlert=false;">
 		<div [innerHTML]="alertMessage"></div>
@@ -6,8 +6,8 @@
 </div>
 <div class="component-main">
 	<div class="head">
-		<h2 class="pull-left">Specialities Management</h2>
-		<button routerLink="/configuration/create-speciality" class="btn btn btn-primary pull-right">Add New Speciality</button>
+		<h2 class="pull-left">Patient Categories Management</h2>
+		<button routerLink="/configuration/create-patient-category" class="btn btn btn-primary pull-right">Add New Patient Category</button>
 	</div>
 	<app-data-table *ngIf="showTable" [dtOptions]="dtOptions"></app-data-table>
 </div>

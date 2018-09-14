@@ -1,12 +1,15 @@
-div.head {
-	padding-bottom: 60px;
+input:focus {
+	outline: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }
 
-.row-border.hover.dataTable.no-footer .checkbox {
+label {
 	position: relative;
 	margin-left: 15px;
 }
-.row-border.hover.dataTable.no-footer .checkbox input {
+label input {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
@@ -51,4 +54,12 @@ input:checked ~ .checkmark:after {
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
+}
+
+form {
+	margin: 50px 100px;
+}
+
+button {
+	margin: 0 0 0 10px;
 }

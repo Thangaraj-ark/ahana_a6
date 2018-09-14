@@ -4,14 +4,17 @@ import { Router } from '@angular/router';
 import { AhanaService } from '../../../../services/ahana.service';
 
 @Component({
-  selector: 'app-specialities',
-  templateUrl: './specialities.component.html',
-  styleUrls: ['./specialities.component.scss']
+	selector: 'app-specialities',
+	templateUrl: './specialities.component.html',
+	styleUrls: ['./specialities.component.scss']
 })
 export class SpecialitiesComponent implements OnInit {
 	
 	showTable = false;
 	dtOptions: DataTables.Settings = {};
+	showAlert = false;
+	alertType = '';
+	alertMessage = '';
 
 	constructor(public router: Router, private ahanaService: AhanaService, private renderer: Renderer) {}
 
@@ -22,30 +25,41 @@ export class SpecialitiesComponent implements OnInit {
 	goInit () {
 		var accessToken = localStorage.getItem('access_token');
 		var self = this;
-		this.ahanaService.getAllRoles(accessToken).subscribe((roleDatas: any) => {
-			// console.log(roleDatas)
-			if (roleDatas && roleDatas.length) {
+		this.ahanaService.getAllSpecialities(accessToken).subscribe((specialityDatas: any) => {
+			// console.log(specialityDatas)
+			if (specialityDatas && specialityDatas.length) {
 				var tableDatas = [];
-				// roleDatas = roleDatas.sort((a, b) => a.created_at - b.created_at));
-				for (var i=0; i<roleDatas.length; i++) {
-					tableDatas.push({roleId: roleDatas[i].role_id, description: roleDatas[i].description, action: ''})
-					if (i == roleDatas.length - 1) {
+				// specialityDatas = specialityDatas.sort((a, b) => a.created_at - b.created_at));
+				for (var i=0; i<specialityDatas.length; i++) {
+					tableDatas.push({specialityId: specialityDatas[i].speciality_id, specialityName: specialityDatas[i].speciality_name, status: specialityDatas[i].status, action: ''})
+					if (i == specialityDatas.length - 1) {
 						this.dtOptions = {
 							// order: [[ 1, "asc" ]],
 							data: tableDatas,
 							columns: [{
-								title: 'Role Id',
+								title: 'Speciality Id',
 								visible: false,
-								data: 'roleId'
+								data: 'specialityId'
 							}, {
-								title: 'Description',
-								data: 'description'
+								title: 'Speciality Name',
+								data: 'specialityName'
+							}, {
+								title: 'Status',
+								orderable: false,
+								render: function (data: any, type: any, full: any) {
+									// console.log(full)
+									if (full.status != '0') {
+										return '<div class="checkbox"><input type="checkbox" class="" specialityId="checkbox_' + full.specialityId + '" value="" checked name="status" /><span class="checkmark"></span></div>';
+									} else {
+										return '<div class="checkbox"><input type="checkbox" class="" specialityId="checkbox_' + full.specialityId + '" value="" name="status" /><span class="checkmark"></span></div>';
+									}
+								}
 							}, {
 								title: 'Action',
 								orderable: false,
 								render: function (data: any, type: any, full: any) {
 									// console.log(full)
-									return '<i id="' + full.roleId + '" class="fa fa-fw fa-edit"></i>';
+									return '<i specialityId="' + full.specialityId + '" class="fa fa-fw fa-edit"></i>';
 								}
 							}]
 						}
@@ -58,10 +72,35 @@ export class SpecialitiesComponent implements OnInit {
 
 	ngAfterViewInit(): void {
 		this.renderer.listenGlobal('document', 'click', (event) => {
-			if (event.target.hasAttribute("id")) {
-				var roleId = event.target.getAttribute('id')
-				// console.log('/configuration/update-role/' + roleId)
-				this.router.navigate(['/configuration/update-role/' + roleId]);
+			var clickElementStatus = event.target.hasAttribute("specialityId");
+			if (clickElementStatus) {
+				var specialityId = event.target.getAttribute('specialityId');
+				if (specialityId.search('checkbox_') != -1) {
+					var accessToken = localStorage.getItem('access_token');
+					var self = this;
+					specialityId = specialityId.split('_')[1];
+					this.ahanaService.changeSpecialityStatus({id: specialityId, model: "CoSpeciality"}, accessToken).subscribe((result: any) => {
+						if (result.success == 'ok') {
+							self.alertType = 'success';
+							self.alertMessage = 'Status changed successful !';
+							self.showAlert = true;
+							setTimeout(function() {
+								self.showAlert = false;
+							}, 2000)
+						}
+					}, error => {
+						self.alertType = 'danger';
+						self.alertMessage = error.error.message;
+						self.showAlert = true;
+						document.getElementById('checkbox_' + specialityId)['checked'] = false;
+						setTimeout(function() {
+							self.showAlert = false;
+						}, 3000)
+					})
+				} else {
+					// console.log('/configuration/update-speciality/' + specialityId)
+					this.router.navigate(['/configuration/update-speciality/' + specialityId]);
+				}
 			}
 		});
 	}

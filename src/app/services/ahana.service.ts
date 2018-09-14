@@ -72,4 +72,46 @@ export class AhanaService {
 		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
 		return this.http.get(this.baseUrl + 'IRISORG/web/v1/organization/getorg?access-token=' + accessToken, this.httpOptions);
 	}
+
+	getAllSpecialities (accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.get(this.baseUrl + 'IRISORG/web/v1/speciality?access-token=' + accessToken, this.httpOptions);
+	}
+
+	changeSpecialityStatus (paramData, accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.post(this.baseUrl + 'IRISORG/web/v1/country/change-status?access-token=' + accessToken, paramData, this.httpOptions);
+	}
+
+	getSelectedSpeciality (SpecialityId, accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.get(this.baseUrl + 'IRISORG/web/v1/specialities/' + SpecialityId +'?access-token=' + accessToken, this.httpOptions);
+	}
+
+	createSpeciality (paramData, accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.post(this.baseUrl + 'IRISORG/web/v1/specialities?access-token=' + accessToken, paramData, this.httpOptions);
+	}
+
+	updateSpeciality (paramData, accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.put(this.baseUrl + 'IRISORG/web/v1/specialities/' + paramData.speciality_id + '?access-token=' + accessToken, paramData, this.httpOptions);
+	}
+
+	getAllPatientCategories (accessToken) {
+		var reqTime = new Date();
+		this.httpOptions.headers = this.httpOptions.headers.set('request-time', moment().format('YYYY-MM-DD hh:mm:ss'));
+		this.httpOptions.headers = this.httpOptions.headers.set('config-route', window['location']['pathname'].replace(/\//g, '.'));
+		return this.http.get(this.baseUrl + 'IRISORG/web/v1/patientcategory?access-token=' + accessToken, this.httpOptions);
+	}
 }

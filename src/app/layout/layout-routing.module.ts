@@ -7,6 +7,9 @@ import { CreateRoleComponent } from './configuration/administrative-module/roles
 import { UpdateRoleComponent } from './configuration/administrative-module/roles/update-role/update-role.component';
 import { RoleRightsComponent } from './configuration/administrative-module/role-rights/role-rights.component';
 import { SpecialitiesComponent } from './configuration/administrative-module/specialities/specialities.component';
+import { CreateSpecialityComponent } from './configuration/administrative-module/specialities/create-speciality/create-speciality.component';
+import { UpdateSpecialityComponent } from './configuration/administrative-module/specialities/update-speciality/update-speciality.component';
+import { PatientCategoriesComponent } from './configuration/administrative-module/patient-categories/patient-categories.component';
 
 const routes: Routes = [
     {
@@ -33,6 +36,15 @@ const routes: Routes = [
         }, {
             path: 'configuration/specialities',
             component: SpecialitiesComponent
+        }, {
+            path: 'configuration/create-speciality',
+            component: CreateSpecialityComponent
+        }, {
+            path: 'configuration/update-speciality/:id',
+            component: UpdateSpecialityComponent
+        }, {
+            path: 'configuration/patient-categories',
+            component: PatientCategoriesComponent
         }]
     }
 ];

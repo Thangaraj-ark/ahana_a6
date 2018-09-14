@@ -44,7 +44,7 @@ export class RolesComponent implements AfterViewInit, OnInit {
 								orderable: false,
 								render: function (data: any, type: any, full: any) {
 									// console.log(full)
-									return '<i id="' + full.roleId + '" class="fa fa-fw fa-edit"></i>';
+									return '<i roleId="' + full.roleId + '" class="fa fa-fw fa-edit"></i>';
 								}
 							}]
 						}
@@ -57,8 +57,8 @@ export class RolesComponent implements AfterViewInit, OnInit {
 
 	ngAfterViewInit(): void {
 		this.renderer.listenGlobal('document', 'click', (event) => {
-			if (event.target.hasAttribute("id")) {
-				var roleId = event.target.getAttribute('id')
+			if (event.target.hasAttribute("roleId")) {
+				var roleId = event.target.getAttribute('roleId')
 				// console.log('/configuration/update-role/' + roleId)
 				this.router.navigate(['/configuration/update-role/' + roleId]);
 			}

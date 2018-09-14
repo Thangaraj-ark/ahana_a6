@@ -28,6 +28,9 @@ export class LayoutComponent implements OnInit {
                 }, {
                     title: 'Specialities',
                     route: '/configuration/specialities'
+                }, {
+                    title: 'Patient Categories',
+                    route: '/configuration/patient-categories'
                 }]
             }, {
                 title: 'User Module',
