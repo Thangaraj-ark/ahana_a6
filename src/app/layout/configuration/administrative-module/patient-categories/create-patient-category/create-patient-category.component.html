@@ -1,0 +1,29 @@
+<app-inner-header [pageHeading]="'Create Patient Category'"></app-inner-header>
+<div [hidden]="!showAlert">
+	<ngb-alert [type]="alertType" (close)="showAlert=false;">
+		<div [innerHTML]="alertMessage"></div>
+	</ngb-alert>
+</div>
+<div class="component-main">
+	<form role="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+		<fieldset class="form-group">
+			<input class="form-control" type="text" placeholder="Patient Category Name *" name="patient_cat_name" autocomplete="off" [(ngModel)]="model.patient_cat_name" #patient_cat_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && patient_cat_name.invalid }" required />
+			<div *ngIf="f.submitted && patient_cat_name.invalid" class="invalid-feedback">
+				<div *ngIf="patient_cat_name.errors.required">Patient category name is required</div>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<input class="form-control" type="text" placeholder="Patient Short Code *" name="patient_short_code" autocomplete="off" [(ngModel)]="model.patient_short_code" #patient_short_code="ngModel" [ngClass]="{ 'is-invalid': f.submitted && patient_short_code.invalid }" required />
+			<div *ngIf="f.submitted && patient_short_code.invalid" class="invalid-feedback">
+				<div *ngIf="patient_short_code.errors.required">Patient short code is required</div>
+			</div>
+		</fieldset>
+		<fieldset class="form-group colorpicker">
+			<p>Color Code:</p>
+			<input class="form-control" name="patient_cat_color" autocomplete="off" [(ngModel)]="model.patient_cat_color" #patient_cat_color="ngModel" maxlength="7" [value]="model.patient_cat_color" cpOutputFormat="hex" cpPosition="bottom" [colorPicker]="model.patient_cat_color" (cpSliderChange)="sildChange($event)" (colorPickerChange)="colorPreview=$event;" /><!-- onChangeColorHex8($event) -->
+			<span class="colorpicker-panal" [style.background]="colorPreview"></span>
+		</fieldset>
+		<button class="btn rounded-btn pull-right" type="button" routerLink="/configuration/patient-categories">Cancel</button>
+		<button class="btn btn-success pull-right" type="submit">Save</button>
+	</form>
+</div>

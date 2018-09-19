@@ -64,8 +64,8 @@ export class PatientCategoriesComponent implements OnInit {
 			var clickElementStatus = event.target.hasAttribute("patientCategoryId");
 			if (clickElementStatus) {
 				var patientCategoryId = event.target.getAttribute('patientCategoryId');
-				console.log('/configuration/update-patientCategory/' + patientCategoryId)
-				// this.router.navigate(['/configuration/update-patientCategory/' + patientCategoryId]);
+				// console.log('/configuration/update-patientCategory/' + patientCategoryId)
+				this.router.navigate(['/configuration/update-patient-category/' + patientCategoryId]);
 			}
 		});
 	}

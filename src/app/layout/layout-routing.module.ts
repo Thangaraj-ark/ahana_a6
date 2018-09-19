@@ -10,6 +10,13 @@ import { SpecialitiesComponent } from './configuration/administrative-module/spe
 import { CreateSpecialityComponent } from './configuration/administrative-module/specialities/create-speciality/create-speciality.component';
 import { UpdateSpecialityComponent } from './configuration/administrative-module/specialities/update-speciality/update-speciality.component';
 import { PatientCategoriesComponent } from './configuration/administrative-module/patient-categories/patient-categories.component';
+import { CreatePatientCategoryComponent } from './configuration/administrative-module/patient-categories/create-patient-category/create-patient-category.component';
+import { UpdatePatientCategoryComponent } from './configuration/administrative-module/patient-categories/update-patient-category/update-patient-category.component';
+import { ChargeCategoryComponent } from './configuration/administrative-module/charge-category/charge-category.component';
+import { RoomChargeItemComponent } from './configuration/administrative-module/room-charge-item/room-charge-item.component';
+import { UserRegistrationComponent } from './configuration/user-module/user-registration/user-registration.component';
+import { UserRolesComponent } from './configuration/user-module/user-roles/user-roles.component';
+import { UserBranchesComponent } from './configuration/user-module/user-branches/user-branches.component';
 
 const routes: Routes = [
     {
@@ -45,6 +52,27 @@ const routes: Routes = [
         }, {
             path: 'configuration/patient-categories',
             component: PatientCategoriesComponent
+        }, {
+            path: 'configuration/create-patient-category',
+            component: CreatePatientCategoryComponent
+        }, {
+            path: 'configuration/update-patient-category/:id',
+            component: UpdatePatientCategoryComponent
+        }, {
+            path: 'configuration/charge-category',
+            component: ChargeCategoryComponent
+        }, {
+            path: 'configuration/room-charge-item',
+            component: RoomChargeItemComponent
+        }, {
+            path: 'configuration/registration',
+            component: UserRegistrationComponent
+        }, {
+            path: 'configuration/user-roles',
+            component: UserRolesComponent
+        }, {
+            path: 'configuration/user-branches',
+            component: UserBranchesComponent
         }]
     }
 ];

@@ -1,0 +1,8 @@
+<app-inner-header [pageHeading]="'Charge Categories'"></app-inner-header>
+<div class="component-main">
+	<div class="head">
+		<!-- <h2 class="pull-left">Roles Management</h2> -->
+		<button routerLink="/configuration/create-charge-category" class="btn btn btn-primary pull-right">Add New Charge Category</button>
+	</div>
+	<app-data-table *ngIf="showTable" [dtOptions]="dtOptions"></app-data-table>
+</div>

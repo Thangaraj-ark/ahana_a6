@@ -73,7 +73,7 @@ export class UpdateSpecialityComponent implements OnInit {
 			}
 		}, error => {
 			self.alertType = 'danger';
-			self.alertMessage = error.error.message;
+			self.alertMessage = Array.isArray(error.error) ? error.error[0].message : error.error.message;
 			self.showAlert = true;
 			setTimeout(function() {
 				self.showAlert = false;

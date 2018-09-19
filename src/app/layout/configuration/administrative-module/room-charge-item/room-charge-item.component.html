@@ -1,0 +1,13 @@
+<app-inner-header [pageHeading]="'Room Charge Items'"></app-inner-header>
+<div [hidden]="!showAlert">
+	<ngb-alert [type]="alertType" (close)="showAlert=false;">
+		<div [innerHTML]="alertMessage"></div>
+	</ngb-alert>
+</div>
+<div class="component-main">
+	<div class="head">
+		<h2 class="pull-left">Room Charge Items Management</h2>
+		<button routerLink="/configuration/create-room-charge-item" class="btn btn btn-primary pull-right">Add New Room Charge Item</button>
+	</div>
+	<app-data-table *ngIf="showTable" [dtOptions]="dtOptions"></app-data-table>
+</div>
